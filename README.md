@@ -1,4 +1,4 @@
-# LeadReady — AI Leadership Ranking & Competency Alignment Assistant
+# LeadReady - AI Leadership Ranking & Competency Alignment Assistant
 
 An AI Engineering project that compares employees against defined role requirements and leadership competencies, generating a plain-language explanation of each employee's alignment — rather than an unexplained leaderboard — to support succession planning decisions.
 
