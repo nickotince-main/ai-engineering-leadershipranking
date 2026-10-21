@@ -38,7 +38,6 @@ Existing AI succession tools are closed, enterprise-platform-bound, and show a r
 ## Target Users
 
 - HR / talent management teams and people managers running succession planning.
-- Students/researchers studying applied AI Engineering in HR.
 
 ## Proposed Data Sources
 
