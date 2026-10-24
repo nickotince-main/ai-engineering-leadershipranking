@@ -1,6 +1,6 @@
-# LeadRanking — Leadership Competency Evidence Ranking Assistant
+# LeadRanking - Leadership Competency Evidence Ranking Assistant
 
-**Course:** AI Engineering — Topic 1 and Topic 2
+**Course:** AI Engineering - Topic 1 and Topic 2
 **Project status:** Preliminary V1 concept; scope and thresholds are proposed and must be validated.
 **Working project name:** LeadRanking - Leadership Competency Evidence Ranking Assistant
 
