@@ -1,55 +1,68 @@
-# LeadReady - AI Leadership Ranking & Competency Alignment Assistant
+# Leadership Competency Evidence Ranking Assistant
 
-An AI Engineering project that compares employees against defined role requirements and leadership competencies, generating a plain-language explanation of each employee's alignment — rather than an unexplained leaderboard — to support succession planning decisions.
+An AI Engineering project that helps users find relevant leadership competency descriptions across multiple public frameworks, using fictional behavioural evidence — ranked, source-grounded, and explicitly non-decisional (it does not assess, rank, or make employment recommendations about real people).
 
 **Author:** Nik Muhammad Muqri Hazim Bin Nik Nor Ahmarizam (A24AI0071)
 **Course:** AI Engineering — Semester Project
-**Status:** Week 1 — Preliminary scoping
+**Status:** Week 2 — V1 conceptual proposal; scope and thresholds are provisional and must be validated.
 
 ---
 
 ## Problem Statement
 
-Succession planning is traditionally manual, inconsistent across departments, and prone to bias: employees who lead informally are often overlooked because they don't match a manager's default picture of "leadership material." Where ranking is attempted, it typically produces a leaderboard with no stated justification. Organizations need a consistent way to compare employees against explicit role requirements, with a clear explanation behind each comparison.
+Public leadership frameworks describe competencies and behaviours relevant to leadership roles, but a user may need to consult multiple frameworks and manually locate the descriptions that relate to a particular behavioural example. This project investigates whether an AI-assisted retrieval and ranking prototype can make relevant competency passages easier to find and verify, for competency exploration and development reflection only.
 
 ## Evidence of the Problem
 
-- Only 32% of surveyed leaders expressed confidence that they have the right skills to lead transformation in their organizations (Korn Ferry).
-- Organizations using continuous, AI-assisted succession tracking report up to 60% faster leadership transitions and more diverse succession pipelines than traditional annual review cycles (4Spot Consulting).
+- Public frameworks (University of Minnesota, Government of Canada) contain structured competency descriptions, but scattered across separate documents with no unified way to search by behavioural evidence.
+- Published research (Groves, 2025, Academy of Management Proceedings) already studies leadership-potential assessment and succession planning, confirming this is an active, established area.
 
 ## Initial Related Work / Existing Approaches
 
 | Approach | Limitation |
 |---|---|
-| Gloat Succession Management Agent | Proprietary, closed scoring logic; not auditable |
-| SAP SuccessFactors AI succession framework (Zenodo, 2025) | Validated on simulated data only; real-world generalizability unproven |
-| Phenom Succession Planning | Skills-ontology matching can still miss informal/relational leadership signals |
+| Manual consultation of leadership frameworks | Authoritative, but users must locate/compare passages themselves |
+| Leadership assessment instruments | Validated procedures, but this prototype does not reproduce or replace them |
+| Bitkuri et al. (2025), ML ranking systems review | General ranking review, not validation for leadership competency matching |
+| Groves (2025), leadership-potential assessment | Establishes the research area; doesn't validate this specific prototype |
+| Explainable person–job recommendations (2025 review) | Related explainability work, but a different task (job matching, not competency exploration) |
 
 ## Engineering Gap / Limitation
 
-Existing AI succession tools are closed, enterprise-platform-bound, and show a rank or score without a competency-by-competency rationale. There is a gap for a small-scale, **explainable** leadership-ranking approach built on open data, where the comparison against role requirements is visible and auditable.
+Can a small, source-grounded prototype rank relevant competency passages from selected public frameworks, show traceable supporting evidence, and remain sufficiently relevant and consistent for non-decisional competency exploration? This is an open engineering question to test — not a claim that no similar system exists.
 
 ## Initial Project Objectives
 
-1. Define a structured leadership competency/role-requirement reference to rank employees against.
-2. Compare each employee's documented competencies to role requirements and generate a plain-language alignment explanation — not just a leaderboard position.
-3. Evaluate and document the ranking approach's demographic bias and mitigation steps.
+1. Design an AI-assisted system that retrieves and ranks leadership competency passages from selected public frameworks using fictional behavioural evidence.
+2. Implement and compare a lexical retrieval baseline (e.g. BM25) with a semantic-similarity approach, where feasible.
+3. Evaluate ranking relevance, source traceability, response time, wording consistency, and scope-control behaviour.
 
 ## Target Users
 
-- HR / talent management teams and people managers running succession planning.
-- Students and researchers studying applied AI Engineering in HR/talent contexts.
+- Learning and development practitioners exploring leadership competencies.
+- HR practitioners using public frameworks for development discussions (non-decisional).
+- Individuals exploring leadership competencies for personal development.
 
 ## Proposed Data Sources
 
-1. [IBM HR Analytics Employee Attrition & Performance dataset](https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-attrition-dataset) — Kaggle, public
-2. [Reengineering Succession Pipelines in SAP SuccessFactors](https://zenodo.org/records/17500957) — Zenodo, open access
+1. [University of Minnesota — Leadership Competency Framework](https://hr.umn.edu/Professional-Development/Supervisory-and-Leadership-Development/Leadership-Competencies-and-Assessments/Leadership-Competency-Framework)
+2. [Government of Canada — Key Leadership Competency Profile](https://www.canada.ca/en/treasury-board-secretariat/services/professional-development/key-leadership-competency-profile.html)
+3. [U.S. OPM — Executive Core Qualifications](https://www.opm.gov/policy-data-oversight/senior-executive-service/executive-core-qualifications/)
+
+## Responsible AI
+
+- Fictional examples only — no real employee profiles accepted or stored.
+- Every result shows its source document and link; scores are labelled as text relevance, not validated leadership potential.
+- The system will not rank real people or recommend an employment action (hire/promote/dismiss).
+- Wording-consistency is explicitly tested (paraphrase pairs) and limitations are reported, not hidden.
+- The human user remains responsible for interpretation and any development discussion.
 
 ## Weekly Progress
 
 | Week | Progress |
 |---|---|
-| Week 1 | Completed group AI system analysis (Claude.ai) and conceptual system map; scoped LeadReady project; set up GitHub repository and folder structure |
+| Week 1 | Completed group AI system analysis (Claude.ai) and conceptual system map; scoped initial project direction |
+| Week 2 | Revised project scope per lecturer consultation (pivoted to public-framework, non-decisional design); completed requirements (FR/NFR/RAI), evaluation criteria, and V1 architecture with ADRs and traceability matrix |
 
 ---
 
@@ -60,8 +73,11 @@ ai-engineering-leadready/
 ├── README.md
 ├── docs/
 │   ├── week1_observation_sheet.md
-│   ├── week1_system_map.jpeg
-│   └── week1_project_scope.md
+│   ├── week1_project_scope.md
+│   ├── week2_requirements.md
+│   ├── week2_evaluation_criteria.md
+│   ├── week2_architecture_v1.png
+│   └── week2_architecture_decisions.md
 ├── data/
 ├── src/
 ├── notebooks/
@@ -69,4 +85,8 @@ ai-engineering-leadready/
 └── prompts/
 ```
 
-> ⚠️ This is a public repository. No API keys, credentials, confidential data, or restricted university information will be committed.
+## Important Submission Checks
+
+- Verify the exact bibliographic details for the Groves (2025) and "Explainable person–job recommendations" sources before final submission.
+- Review at least 2–3 public framework documents, note any parsing issues, and keep only material you're permitted to use (check each site's terms).
+- No API keys, credentials, confidential data, or restricted university information will be committed. This is a public repository.
