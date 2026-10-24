@@ -1,92 +1,134 @@
 # Leadership Competency Evidence Ranking Assistant
 
-An AI Engineering project that helps users find relevant leadership competency descriptions across multiple public frameworks, using fictional behavioural evidence — ranked, source-grounded, and explicitly non-decisional (it does not assess, rank, or make employment recommendations about real people).
+**Course:** AI Engineering — Topic 1 and Topic 2
+**Project status:** Preliminary V1 concept; scope and thresholds are proposed and must be validated.
+**Working project name:** Leadership Competency Evidence Ranking Assistant
 
-**Author:** Nik Muhammad Muqri Hazim Bin Nik Nor Ahmarizam (A24AI0071)
-**Course:** AI Engineering — Semester Project
-**Status:** Week 2 — V1 conceptual proposal; scope and thresholds are provisional and must be validated.
+## 1. Project Overview
 
----
+This project explores an AI-assisted tool that helps a user connect **fictional profile evidence** with leadership competencies described in public leadership frameworks. The system retrieves and ranks relevant competency descriptions, displays the supporting text and source links, and highlights competencies that may be useful for further development.
 
-## Problem Statement
+The prototype is a **competency exploration and development-support tool**. It is not a validated measure of leadership potential and must not decide who should be hired, promoted, dismissed, or placed in a succession plan.
 
-Public leadership frameworks describe competencies and behaviours relevant to leadership roles, but a user may need to consult multiple frameworks and manually locate the descriptions that relate to a particular behavioural example. This project investigates whether an AI-assisted retrieval and ranking prototype can make relevant competency passages easier to find and verify, for competency exploration and development reflection only.
+## 2. Problem and Proposed Approach
 
-## Evidence of the Problem
+Public leadership frameworks describe competencies and expected behaviours, but their descriptions come from different organisations and contexts. A prototype can test whether information retrieval and text-similarity ranking can make relevant competency descriptions easier to find and verify.
 
-- Public frameworks (University of Minnesota, Government of Canada) contain structured competency descriptions, but scattered across separate documents with no unified way to search by behavioural evidence.
-- Published research (Groves, 2025, Academy of Management Proceedings) already studies leadership-potential assessment and succession planning, confirming this is an active, established area.
+The initial approach is to:
+1. Use public leadership competency documents as the knowledge base.
+2. Accept fictional behavioural evidence and a selected role/category.
+3. Retrieve and rank potentially relevant competency passages.
+4. Show source-grounded explanations and references.
+5. Evaluate relevance, traceability, response time, and consistency.
 
-## Initial Related Work / Existing Approaches
+A lexical retrieval baseline (such as BM25) may be compared with a semantic-similarity approach. A supervised learning-to-rank method will only be considered if a suitable labelled relevance dataset becomes available.
 
-| Approach | Limitation |
-|---|---|
-| Manual consultation of leadership frameworks | Authoritative, but users must locate/compare passages themselves |
-| Leadership assessment instruments | Validated procedures, but this prototype does not reproduce or replace them |
-| Bitkuri et al. (2025), ML ranking systems review | General ranking review, not validation for leadership competency matching |
-| Groves (2025), leadership-potential assessment | Establishes the research area; doesn't validate this specific prototype |
-| Explainable person–job recommendations (2025 review) | Related explainability work, but a different task (job matching, not competency exploration) |
+## 3. Scope Boundaries
 
-## Engineering Gap / Limitation
+### In scope
+- Explore competency descriptions in public documents.
+- Accept fictional, non-identifying behavioural examples.
+- Rank relevant competency passages for exploration.
+- Show the matched text, source document, and URL.
+- Show potential development areas as prompts for reflection.
+- Evaluate with a manually curated test set.
 
-Can a small, source-grounded prototype rank relevant competency passages from selected public frameworks, show traceable supporting evidence, and remain sufficiently relevant and consistent for non-decisional competency exploration? This is an open engineering question to test — not a claim that no similar system exists.
+### Out of scope
+- Predicting actual employee promotion or leadership success.
+- Ranking real employees or candidates against one another.
+- Hiring, promotion, dismissal, compensation, or succession decisions.
+- Processing confidential employee records or sensitive personal data.
+- Claiming that similarity scores are validated leadership scores.
+- Replacing trained HR professionals or structured assessment processes.
 
-## Initial Project Objectives
+## 4. Public Data Sources
 
-1. Design an AI-assisted system that retrieves and ranks leadership competency passages from selected public frameworks using fictional behavioural evidence.
-2. Implement and compare a lexical retrieval baseline (e.g. BM25) with a semantic-similarity approach, where feasible.
-3. Evaluate ranking relevance, source traceability, response time, wording consistency, and scope-control behaviour.
+These sources provide competency frameworks, not employee-level outcome labels. Their contents may be used according to each site's terms and applicable copyright rules; the project stores source metadata and short excerpts needed for evaluation rather than republishing whole documents.
 
-## Target Users
+1. **University of Minnesota — Leadership Competency Framework**
+   https://hr.umn.edu/Professional-Development/Supervisory-and-Leadership-Development/Leadership-Competencies-and-Assessments/Leadership-Competency-Framework
+2. **Government of Canada — Key Leadership Competency Profile**
+   https://www.canada.ca/en/treasury-board-secretariat/services/professional-development/key-leadership-competency-profile.html
+3. **U.S. Office of Personnel Management — Executive Core Qualifications**
+   https://www.opm.gov/policy-data-oversight/senior-executive-service/executive-core-qualifications/
+
+The frameworks were developed for different institutional contexts. Competency labels should not be treated as directly interchangeable without documenting the mapping.
+
+## 5. Initial Related Work
+
+- **Bitkuri et al. (2025), "A Review of Machine Learning Ranking Systems: Methods, Applications, and Challenges."**
+  https://www.cmjpublishers.com/wp-content/uploads/2025/10/a-review-of-machine-learning-ranking-systems-methods-applications-and-challenges.pdf
+  Relevance: summarises pointwise, pairwise, and listwise ranking approaches and general challenges. Limitation: a general ranking review, not validation of a leadership competency assessment system.
+- **Groves (2025), "Assessing Leadership Potential for Succession Planning in the Digital Era of Work and Organizations," Academy of Management Proceedings.**
+  Official record to be verified through the university library before submission.
+  Relevance: shows leadership-potential assessment is already an active research area. Limitation: does not by itself establish the validity of this proposed retrieval-and-ranking design.
+- **"Explainable person–job recommendations: challenges, approaches, and comparative analysis" (2025 review).**
+  Exact publication record and DOI to be verified through the university library before final submission.
+  Relevance: explainability in matching/recommendation is related. Limitation: person–job recommendation is not the same task as leadership competency evidence exploration.
+
+These sources establish relevant areas of prior work; they do not prove that no comparable system exists. The engineering gap should be refined after a focused literature search and hands-on baseline tests.
+
+## 6. Engineering Gap
+
+Can a small, source-grounded prototype rank relevant competency passages from selected public frameworks, show traceable supporting evidence, and provide sufficiently relevant and consistent results for non-decisional competency exploration? This is an engineering question to test, not a claim that no similar product or study exists.
+
+## 7. Initial Project Objectives
+
+- **O1:** Design an AI-assisted system that retrieves and ranks leadership competency passages from selected public frameworks using fictional behavioural evidence.
+- **O2:** Implement and compare a lexical retrieval baseline with a semantic-similarity approach, where feasible.
+- **O3:** Evaluate ranking relevance, source traceability, response time, wording consistency, and scope-control behaviour.
+
+## 8. Target Users
 
 - Learning and development practitioners exploring leadership competencies.
-- HR practitioners using public frameworks for development discussions (non-decisional).
-- Individuals exploring leadership competencies for personal development.
+- HR practitioners preparing non-decisional leadership development resources.
+- Individuals who want to explore public leadership competency frameworks.
 
-## Proposed Data Sources
+## 9. Repository Structure
 
-1. [University of Minnesota — Leadership Competency Framework](https://hr.umn.edu/Professional-Development/Supervisory-and-Leadership-Development/Leadership-Competencies-and-Assessments/Leadership-Competency-Framework)
-2. [Government of Canada — Key Leadership Competency Profile](https://www.canada.ca/en/treasury-board-secretariat/services/professional-development/key-leadership-competency-profile.html)
-3. [U.S. OPM — Executive Core Qualifications](https://www.opm.gov/policy-data-oversight/senior-executive-service/executive-core-qualifications/)
-
-## Responsible AI
-
-- Fictional examples only — no real employee profiles accepted or stored.
-- Every result shows its source document and link; scores are labelled as text relevance, not validated leadership potential.
-- The system will not rank real people or recommend an employment action (hire/promote/dismiss).
-- Wording-consistency is explicitly tested (paraphrase pairs) and limitations are reported, not hidden.
-- The human user remains responsible for interpretation and any development discussion.
-
-## Weekly Progress
-
-| Week | Progress |
-|---|---|
-| Week 1 | Completed group AI system analysis (Claude.ai) and conceptual system map; scoped initial project direction |
-| Week 2 | Revised project scope per lecturer consultation (pivoted to public-framework, non-decisional design); completed requirements (FR/NFR/RAI), evaluation criteria, and V1 architecture with ADRs and traceability matrix |
-
----
-
-## Repository Structure
-
-```
-ai-engineering-leadready/
+```text
+.
 ├── README.md
-├── docs/
-│   ├── week1_observation_sheet.md
-│   ├── week1_project_scope.md
-│   ├── week2_requirements.md
-│   ├── week2_evaluation_criteria.md
-│   ├── week2_architecture_v1.png
-│   └── week2_architecture_decisions.md
-├── data/
-├── src/
-├── notebooks/
-├── evaluation/
-└── prompts/
+└── docs/
+    ├── week1_observation_sheet.md
+    ├── week1_project_scope.md
+    ├── week2_requirements.md
+    ├── week2_evaluation_criteria.md
+    ├── week2_architecture_v1.png
+    └── week2_architecture_decisions.md
 ```
 
-## Important Submission Checks
+## 10. Evaluation Plan (Initial)
 
-- Verify the exact bibliographic details for the Groves (2025) and "Explainable person–job recommendations" sources before final submission.
-- Review at least 2–3 public framework documents, note any parsing issues, and keep only material you're permitted to use (check each site's terms).
-- No API keys, credentials, confidential data, or restricted university information will be committed. This is a public repository.
+| Evaluation area | Initial method | Proposed target |
+|---|---|---|
+| Ranking relevance | Manually label relevance for a curated query set; calculate nDCG@5 | nDCG@5 ≥ 0.70 (provisional; confirm after baseline) |
+| Source traceability | Audit every returned match for a valid source reference | 100% of displayed matches have a source |
+| Response time | Measure end-to-end latency across repeated test queries | p95 ≤ 5 seconds on the stated test environment |
+| Wording consistency | Compare ranking for equivalent fictional evidence phrased differently | Report rank changes; set tolerance after baseline |
+| Scope control | Test requests for promotion/rejection decisions | 100% of tested decision requests receive a boundary response |
+
+These are engineering targets for a student prototype, not established industry standards or evidence of real-world validity.
+
+## 11. Responsible AI
+
+- Use fictional examples only; do not upload real employee profiles.
+- Display source references and explain that scores represent text relevance, not a person's ability or potential.
+- Do not generate a ranked list of real people or recommend an employment action.
+- Check whether wording changes alter rankings and report the limitations.
+- Keep the human user responsible for interpretation and development discussions.
+
+## 12. Weekly Progress
+
+| Week | Focus | Deliverable | Status |
+|---|---|---|---|
+| Week 1 | Initial observation and project scope | Observation sheet, scope, README | Draft; direct group observation evidence added |
+| Week 2 | Requirements, evaluation, architecture | Requirements, evaluation criteria, architecture PNG and decisions | Draft V1 |
+| Week 3 onward | Data preparation and prototype implementation | To be defined in later labs | Not started |
+
+## 13. Important Submission Checks
+
+- Replace any pending observation fields with your group's actual observations and evidence.
+- Verify the exact bibliographic details for every paper before submission.
+- Download/review at least 2–3 public domain documents, note parsing issues, and keep only material you are allowed to use.
+- Commit the files to GitHub and update this README as the project develops.
