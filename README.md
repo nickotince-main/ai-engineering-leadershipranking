@@ -1,8 +1,8 @@
-# Leadership Competency Evidence Ranking Assistant
+# LeadRanking — Leadership Competency Evidence Ranking Assistant
 
 **Course:** AI Engineering — Topic 1 and Topic 2
 **Project status:** Preliminary V1 concept; scope and thresholds are proposed and must be validated.
-**Working project name:** Leadership Competency Evidence Ranking Assistant
+**Working project name:** LeadRanking - Leadership Competency Evidence Ranking Assistant
 
 ## 1. Project Overview
 
@@ -53,6 +53,8 @@ These sources provide competency frameworks, not employee-level outcome labels. 
    https://www.opm.gov/policy-data-oversight/senior-executive-service/executive-core-qualifications/
 
 The frameworks were developed for different institutional contexts. Competency labels should not be treated as directly interchangeable without documenting the mapping.
+
+**Supplementary reference dataset:** `data/ibm_hr_attrition_reference.csv` (IBM HR Analytics Employee Attrition & Performance dataset, public/synthetic, via Kaggle). This dataset is used **only** to help construct realistic *fictional* behavioural-evidence test examples (e.g. plausible job roles, performance-rating patterns, training history) for the evaluation query set in Section 10. It is explicitly **not** used to rank, score, or compare real or simulated individual employees against one another — doing so would be out of scope per Section 3.
 
 ## 5. Initial Related Work
 
