@@ -1,29 +1,31 @@
-# Week 2 Evaluation Criteria — LeadRanking (Leadership Competency Evidence Ranking Assistant)
+# Week 2 Evaluation Criteria — TalentRank (Explainable Machine Learning for Employee Promotion Prediction and Ranking)
 
-**Note:** All thresholds are provisional student-project targets, to be reviewed after a baseline test.
+**Version:** 1.0. Thresholds are proposed targets, not measured results — review after the first baseline experiment and update with reasons if needed.
+
+The evaluation uses the public 54,808-record employee promotion dataset to study **historical promotion outcomes**. Its label does not validate leadership potential or suitability for a particular management role. A probability-sorted list is therefore an exploratory ordering unless a defensible ranking reference is available.
 
 ---
 
 | Requirement ID | Linked Objective | Evaluation Criterion | Capability Bucket | Measurement Method | Metric | Threshold / Expected Outcome |
 |---|---|---|---|---|---|---|
-| FR1 | O1 | Supported role/category selection works as designed. | Instruction-following capability | Test each configured role/category and verify the selected category is passed to retrieval. | Successful supported selections / total supported selections | 100% — users can define the competency context for exploration. |
-| FR2 | O1 | Invalid, empty, or unsupported input receives a clear fallback. | Instruction-following capability | Test empty input, unsupported category, low-relevance input, and malformed examples. | Correct fallback responses / defined test cases | 100% — users are not shown forced or misleading matches. |
-| FR3 / NFR1 | O2 | Relevant competency passages appear near the top of the ranked list. | Domain-specific capability | Create a manually curated set of fictional queries; have relevance judged against selected framework passages; compare lexical baseline with semantic similarity. | Mean nDCG@5 | ≥ 0.70 provisional — users can find relevant competency descriptions with less manual searching. |
-| FR4 / NFR3 / RAI3 | O2 | Every displayed match can be checked against a source. | Generation capability | Audit all displayed results from the test set against the source document and stored source metadata. | Valid source references / displayed matches | 100% — users can verify the competency wording and context. |
-| NFR2 | O3 | Results arrive quickly enough for interactive exploration. | Cost and latency | Run a documented set of repeated queries on the same test environment; measure from submission to complete results. | p95 end-to-end latency | ≤ 5 seconds for the small curated collection — prototype stays usable during a demonstration. |
-| RAI4 | O3 | Equivalent fictional evidence does not cause unexplained ranking changes. | Instruction-following capability | Build paraphrase pairs that preserve meaning; compare top-five rankings and investigate differences. | Top-5 overlap or rank-change count; qualitative failure log | No fixed threshold until baseline is known; report every pair and set a justified tolerance. |
-| FR6 / RAI2 | O3 | The system does not make employment decisions. | Instruction-following capability | Test requests to rank named real people, select a promotion candidate, or recommend rejection. | Appropriate boundary response rate | 100% of defined test cases — reduces risk the prototype is mistaken for an automated HR decision-maker. |
-| FR5 / RAI5 | O3 | Output clearly states what the ranking means and does not mean. | Generation capability | Inspect every result view and sample output against a checklist. | Result views containing limitation statement | 100% — users understand that relevance is not a validated measure of leadership potential. |
+| FR1 | O1 | Dataset quality and target understanding | Domain-specific capability | Run a documented data audit before modelling: check dimensions, target distribution, missing values, duplicate rows, feature definitions, and possible target leakage. | Data-audit checklist completion; counts/percentages for missing values, duplicates, each target class | 100% of planned checks reported; unresolved issues and assumptions documented before training. |
+| FR3 / NFR1 | O2 | Comparison with a simple baseline | Domain-specific capability | Train at least two suitable classifiers and a simple baseline using the same train/test split and preprocessing pipeline; compare on held-out data. | F1-score and PR-AUC as primary metrics; also precision, recall, ROC-AUC | Selected model should improve PR-AUC over baseline, or show a justified trade-off; report the actual result either way. |
+| FR5 | O2 | Held-out predictive performance | Domain-specific capability | Evaluate the final selected model once on the held-out test set after model selection; report confusion matrix and classification metrics. | Precision, recall, F1-score, ROC-AUC, PR-AUC, confusion matrix | Report all applicable metrics and the baseline comparison; no claim of a universal minimum score before observing baseline results. |
+| FR4 / NFR4 | O2 | Ranking validity and limitations | Domain-specific capability | Sort test records by predicted promotion probability; first determine whether defensible relevance labels or a reference ranking exist; if so calculate a suitable ranking metric, otherwise describe the ordering as exploratory. | Availability/documentation of a valid ranking target; NDCG@k only if suitable | 100% of ranking claims state their target and limitations; no validated ranking quality claimed without a defensible reference. |
+| FR6 / RAI3 | O3 | Explanation clarity and non-causal wording | Generation capability | Review a sample of feature explanations and output text against a checklist confirming explanations describe model behaviour, not causation. | % of reviewed explanations passing the non-causal wording checklist | 100% avoid causal claims; unsuitable explanations corrected or flagged. |
+| RAI1 | O1, O3 | Group-wise performance and fairness limitations | Domain-specific capability | Where relevant group attributes, sufficient sample sizes, and appropriate permissions are available, compare group-level error or selection-rate measures; record sample sizes and uncertainty. | Group-level metric differences and record of checks/sample sizes/limitations | Complete and report every planned group check; no claim the model is fair solely because differences are small or data insufficient. |
+| RAI2 / RAI5 | O3 | Transparency of intended use and dataset target | Instruction-following capability | Inspect project documentation, interface, and result/report views for the required limitation statement. | % of relevant views/sections containing the statement | 100% state that predictions support analysis only, require human review, and represent historical outcomes — not validated leadership potential. |
+| NFR2 | O2 | Reproducibility of the experiment | Cost and latency | Re-run the documented pipeline with the same split, preprocessing, configuration, and random seeds; compare predictions and metrics. | Difference in reported metrics/predictions under the same configuration | Deterministic steps reproduce identical results; any expected variation explained and documented. |
+| NFR3 | O2 | Practical experiment runtime | Cost and latency | Record end-to-end training/evaluation time for the selected dataset on the documented development environment. | Total training and evaluation runtime | Provisional: complete a full experiment within 10 minutes; reassess after the first baseline run. |
 
-## Evaluation Dataset Plan
+## Evaluation Notes
 
-1. Select a manageable set of public competency passages from the reviewed frameworks.
-2. Write fictional behavioural-evidence queries that do not identify real people.
-3. Manually label the relevance of candidate passages using a simple scale (0 = not relevant, 1 = partly relevant, 2 = strongly relevant).
-4. Document the reason for each relevance label and ask a second reviewer to review a subset if available.
-5. Keep a separate list of paraphrase pairs for wording-consistency tests.
-6. Compare a lexical retrieval baseline (such as BM25) with semantic similarity only if the implementation and environment support a fair comparison.
-7. Report dataset size, how labels were assigned, limitations, and results. Do not claim this small test set validates leadership potential or workforce fairness.
+1. **Use a held-out test set.** Do not use test-set results to select features, tune model parameters, or choose a decision threshold.
+2. **Account for class imbalance.** Report precision, recall, F1-score, and PR-AUC where suitable; accuracy alone is insufficient.
+3. **Keep ranking claims narrow.** Sorting by predicted probability is not the same as validating promotion suitability — use NDCG@k or another ranking metric only if a defensible relevance target is available.
+4. **Interpret explanations carefully.** Feature importance or SHAP-style values describe how the model uses features; they do not establish causation.
+5. **Treat fairness results as limited evidence.** Report group sample sizes, uncertainty, and missing attributes — absence of a detected disparity does not prove fairness.
+6. **Record actual results later.** This file specifies the evaluation plan; fill in measured scores and observations after running the experiments.
 
 ---
 
@@ -31,4 +33,4 @@
 
 **Which evaluation criterion is most important for determining whether your AI application will be useful to its intended users? Why?**
 
-Ranking relevance supported by source traceability (FR3/NFR1 together with FR4/NFR3/RAI3) is the most important. A fast result is not useful if it surfaces unrelated competencies, and a plausible result is not trustworthy if users cannot verify where it came from. Ranking relevance and traceability should be prioritised before adding more complex models.
+RAI2/RAI5 (transparency of intended use and dataset target) is the most important. The project's central risk is not that the model performs poorly — it's that an accurate-looking prediction gets mistaken for a validated measure of leadership potential and used to justify a real promotion decision. Every other criterion in this table (predictive performance, ranking validity, explanation quality) only matters if users correctly understand what the output does and doesn't mean. If the transparency requirement fails, even a technically strong model becomes actively harmful rather than merely unhelpful — which is a stronger failure mode than, for example, a model that simply underperforms the baseline.
