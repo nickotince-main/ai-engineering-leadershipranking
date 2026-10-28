@@ -5,7 +5,7 @@
 
 ## 1. Project Overview
 
-TalentRank develops and compares machine learning models that predict historical employee promotion outcomes from a public HR dataset, explore ranking employees by predicted promotion probability, and explain which recorded features influence each prediction. The system supports HR Talent Management Specialists and senior management with analysis — it does not make or automate promotion decisions.
+TalentRank develops and compares machine learning models that predict historical employee promotion outcomes from a public HR dataset, explore ranking employees by predicted promotion probability, and explain which recorded features influence each prediction. The system supports HR Talent Management Specialists and senior management with analysis - it does not make or automate promotion decisions.
 
 ## 2. Problem Statement
 
