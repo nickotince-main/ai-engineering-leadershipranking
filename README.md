@@ -61,7 +61,6 @@ ai-engineering-talentrank/
 │   ├── week2_architecture_v1.png
 │   └── week2_architecture_decisions.md
 ├── data/
-│   └── DATASET_SOURCE.txt
 ├── src/
 ├── notebooks/
 ├── evaluation/
