@@ -29,9 +29,9 @@ The dataset supports prediction of historical promotion outcomes but does not me
 
 ## 6. Initial Project Objectives
 
-- **O1:** Investigate employee features associated with historical promotion outcomes.
-- **O2:** Develop and compare machine learning models for promotion prediction and ranking.
-- **O3:** Evaluate model performance and explain the features that influence predictions.
+- **O1:** To investigate employee features associated with historical promotion outcomes.
+- **O2:** To develop machine learning models for promotion prediction and ranking.
+- **O3:** To evaluate the predictive performance and interpretability of the developed machine learning models. 
 
 ## 7. Target Users
 
