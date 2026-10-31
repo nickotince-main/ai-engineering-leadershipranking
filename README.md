@@ -55,7 +55,7 @@ ai-engineering-talentrank/
 ├── docs/
 │   ├── week1_observation_sheet.md
 │   ├── week1_project_scope.md
-│   └── week1_system_map.jpeg
+│   ├── week1_system_map.jpeg
 │   ├── week2_requirements.md
 │   ├── week2_evaluation_criteria.md
 │   ├── week2_architecture_v1.png
